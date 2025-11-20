@@ -1,3 +1,11 @@
+/*
+  Berkas: stok-app.js
+  Keterangan: Berkas JavaScript berisi logika aplikasi Vue.js untuk halaman manajemen stok
+  Fungsi: Mengimplementasikan fitur CRUD (Create, Read, Update, Delete) untuk data stok bahan ajar
+  Fitur: Filter berdasarkan UT-Daerah dan kategori, sorting, edit inline, validasi form, dan statistik stok
+  Digunakan untuk: Mengelola inventaris bahan ajar Universitas Terbuka secara interaktif
+*/
+
 new Vue({
     el: '#stok-app',
     data: {

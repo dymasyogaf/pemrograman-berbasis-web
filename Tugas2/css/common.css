@@ -1,20 +1,16 @@
 /*
-  Berkas: style.css
-  Keterangan: Berkas CSS utama yang berisi gaya dasar dan komponen untuk aplikasi SITTA UT
-  Fungsi: Mendefinisikan variabel CSS, reset styles, dan komponen UI yang digunakan di seluruh aplikasi
-  Isi: Variabel warna, tipografi, spacing, komponen header, card, button, form, tabel, dll.
-  Digunakan untuk: Memberikan tampilan modern dan konsisten di seluruh aplikasi
+  Berkas: common.css
+  Keterangan: Berkas CSS berisi gaya umum yang digunakan di semua halaman aplikasi SITTA UT
+  Fungsi: Mendefinisikan variabel CSS, komponen dasar, dan gaya yang digunakan bersama
+  Isi: Variabel warna, tipografi, spacing, komponen header, navigasi, card, button, form, tabel, dll.
+  Digunakan untuk: Menjamin konsistensi tampilan di seluruh halaman aplikasi
 */
 
-/* Modern CSS Reset & Base Styles */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+/* ===================================
+   COMMON STYLES FOR ALL PAGES
+   =================================== */
 
+/* CSS Variables */
 :root {
     /* Color Palette - White Background, Black Text, Blue Accents */
     --primary-color: #0066cc;
@@ -77,7 +73,18 @@
     --transition-slow: 350ms ease-in-out;
 }
 
-/* Base Styles */
+/* ===================================
+   RESET & BASE STYLES
+   =================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body.layout {
     font-family: var(--font-family);
     background: var(--gray-50);
@@ -86,7 +93,10 @@ body.layout {
     min-height: 100vh;
 }
 
-/* Modern Header */
+/* ===================================
+   HEADER COMPONENTS
+   =================================== */
+
 .topbar {
     background: var(--primary-color);
     color: white;
@@ -126,24 +136,85 @@ body.layout {
     z-index: 1;
 }
 
-.topbar nav {
-    margin-top: var(--space-4);
-    display: flex;
-    gap: var(--space-3);
-    justify-content: center;
-    flex-wrap: wrap;
-    position: relative;
-    z-index: 1;
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-/* Container */
+/* ===================================
+   NAVIGATION COMPONENTS
+   =================================== */
+
+.main-nav {
+    margin-top: var(--space-4);
+    position: relative;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+    gap: 4px;
+}
+
+.nav-toggle span {
+    width: 24px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: all var(--transition-normal);
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.nav-menu {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    font-weight: 500;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ===================================
+   LAYOUT COMPONENTS
+   =================================== */
+
 .container {
     max-width: 1200px;
     margin: var(--space-8) auto;
     padding: 0 var(--space-4);
 }
 
-/* Modern Cards */
+/* ===================================
+   CARD COMPONENTS
+   =================================== */
+
 .card {
     background: var(--gray-100);
     border-radius: var(--radius-xl);
@@ -199,7 +270,10 @@ body.layout {
     background: var(--primary-light);
 }
 
-/* Modern Buttons */
+/* ===================================
+   BUTTON COMPONENTS
+   =================================== */
+
 .btn {
     display: inline-flex;
     align-items: center;
@@ -266,7 +340,14 @@ body.layout {
     transform: translateY(0);
 }
 
-/* Menu Links */
+.btn-icon {
+    font-size: 1.25rem;
+}
+
+/* ===================================
+   MENU LINKS
+   =================================== */
+
 .menu-links {
     display: flex;
     flex-wrap: wrap;
@@ -280,7 +361,10 @@ body.layout {
     font-size: 1rem;
 }
 
-/* Stats Row */
+/* ===================================
+   STATS COMPONENTS
+   =================================== */
+
 .stats-row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -331,7 +415,10 @@ body.layout {
     color: var(--gray-600);
 }
 
-/* Forms */
+/* ===================================
+   FORM COMPONENTS
+   =================================== */
+
 .filters {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -404,7 +491,20 @@ select:hover {
     font-size: 0.875rem;
 }
 
-/* Modern Table */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-4);
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+/* ===================================
+   TABLE COMPONENTS
+   =================================== */
+
 .table-wrapper {
     width: 100%;
     overflow-x: auto;
@@ -458,7 +558,10 @@ select:hover {
     text-align: center;
 }
 
-/* Modern Badges */
+/* ===================================
+   BADGE COMPONENTS
+   =================================== */
+
 .badge {
     display: inline-flex;
     align-items: center;
@@ -499,7 +602,10 @@ select:hover {
     color: var(--primary-color);
 }
 
-/* Text Colors */
+/* ===================================
+   TEXT COLOR UTILITIES
+   =================================== */
+
 .text-success {
     color: var(--success-color);
 }
@@ -512,25 +618,20 @@ select:hover {
     color: var(--danger-color);
 }
 
-/* Form Grid */
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--space-4);
-}
+/* ===================================
+   INLINE ACTIONS
+   =================================== */
 
-.form-group.full {
-    grid-column: 1 / -1;
-}
-
-/* Inline Actions */
 .inline-actions {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
 }
 
-/* Pills */
+/* ===================================
+   PILL COMPONENTS
+   =================================== */
+
 .pill-list {
     list-style: none;
     padding: 0;
@@ -549,7 +650,10 @@ select:hover {
     font-weight: 500;
 }
 
-/* Timeline */
+/* ===================================
+   TIMELINE COMPONENTS
+   =================================== */
+
 .timeline {
     list-style: none;
     padding-left: 0;
@@ -592,7 +696,10 @@ select:hover {
     font-weight: 600;
 }
 
-/* Footer */
+/* ===================================
+   FOOTER COMPONENTS
+   =================================== */
+
 .footer {
     text-align: center;
     padding: var(--space-6);
@@ -603,7 +710,21 @@ select:hover {
     margin-top: var(--space-12);
 }
 
-/* Responsive Design */
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-note {
+    margin-top: var(--space-2);
+    font-size: 0.8125rem;
+    opacity: 0.8;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
 @media (max-width: 768px) {
     .container {
         padding: 0 var(--space-3);
@@ -677,6 +798,38 @@ select:hover {
     .table-wrapper {
         border-radius: var(--radius-md);
     }
+    
+    /* Mobile Navigation */
+    .nav-toggle {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--primary-dark);
+        flex-direction: column;
+        padding: var(--space-4);
+        border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all var(--transition-normal);
+    }
+    
+    .nav-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .nav-link {
+        padding: var(--space-3) var(--space-4);
+        border-radius: var(--radius-md);
+    }
 }
 
 @media (max-width: 480px) {
@@ -711,105 +864,9 @@ select:hover {
     }
 }
 
-/* Loading States */
-.loading-skeleton {
-    background: var(--gray-200);
-    animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-    0% {
-        background-position: 200% 0;
-    }
-    100% {
-        background-position: -200% 0;
-    }
-}
-
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
-    }
-}
-
-.loading {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Page Transitions */
-.page-transition-enter-active,
-.page-transition-leave-active {
-    transition: all var(--transition-slow);
-}
-
-.page-transition-enter,
-.page-transition-leave-to {
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-/* Fade In Animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fade-in {
-    animation: fadeIn var(--transition-normal) ease-out;
-}
-
-/* Slide In Animation */
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.slide-in {
-    animation: slideIn var(--transition-normal) ease-out;
-}
-
-/* Scale In Animation */
-@keyframes scaleIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.scale-in {
-    animation: scaleIn var(--transition-normal) ease-out;
-}
-
-/* Staggered Animation for Cards */
-.card {
-    animation: fadeIn var(--transition-normal) ease-out;
-    animation-fill-mode: both;
-}
-
-.card:nth-child(1) { animation-delay: 0.1s; }
-.card:nth-child(2) { animation-delay: 0.2s; }
-.card:nth-child(3) { animation-delay: 0.3s; }
-.card:nth-child(4) { animation-delay: 0.4s; }
-.card:nth-child(5) { animation-delay: 0.5s; }
+/* ===================================
+   ENHANCED INTERACTIONS
+   =================================== */
 
 /* Enhanced Button Interactions */
 .btn::after {
@@ -898,6 +955,10 @@ select:hover {
 .card:active {
     transform: translateY(-2px);
 }
+
+/* ===================================
+   ACCESSIBILITY & PERFORMANCE
+   =================================== */
 
 /* Smooth Scrolling */
 html {

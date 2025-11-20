@@ -1,0 +1,170 @@
+/*
+  Berkas: tracking.css
+  Keterangan: Berkas CSS berisi gaya khusus untuk halaman tracking delivery order aplikasi SITTA UT
+  Fungsi: Mendefinisikan tampilan khusus untuk komponen di halaman tracking pengiriman
+  Isi: Gaya untuk info grid, disabled input, paket contents, expedisi badge, price cell, dan timeline
+  Digunakan untuk: Meningkatkan tampilan halaman tracking agar lebih informatif dan responsif
+*/
+
+/* ===================================
+   TRACKING PAGE SPECIFIC STYLES
+   =================================== */
+
+/* ===================================
+   INFO GRID COMPONENT
+   =================================== */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+}
+
+.info-item {
+    background: white;
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-200);
+}
+
+.info-label {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    margin-bottom: var(--space-2);
+}
+
+.info-value {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--gray-900);
+}
+
+.info-value.price {
+    color: var(--success-color);
+}
+
+/* ===================================
+   DISABLED INPUT COMPONENT
+   =================================== */
+
+.disabled-input {
+    background: var(--gray-100);
+    color: var(--gray-600);
+    cursor: not-allowed;
+}
+
+/* ===================================
+   PAKET CONTENTS COMPONENT
+   =================================== */
+
+.paket-contents {
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    border: 1px solid var(--gray-200);
+}
+
+.paket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.paket-name {
+    font-weight: 600;
+    color: var(--gray-900);
+}
+
+.paket-price {
+    font-weight: 700;
+    color: var(--success-color);
+}
+
+/* ===================================
+   EXPEDISI BADGE COMPONENT
+   =================================== */
+
+.expedisi-badge {
+    display: inline-block;
+    padding: var(--space-1) var(--space-2);
+    background: var(--primary-light);
+    color: var(--primary-color);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* ===================================
+   PRICE CELL COMPONENT
+   =================================== */
+
+.price-cell {
+    font-weight: 600;
+    color: var(--success-color);
+}
+
+/* ===================================
+   TIMELINE CONTAINER COMPONENT
+   =================================== */
+
+.timeline-container {
+    max-width: 300px;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN FOR TRACKING PAGE
+   =================================== */
+
+@media (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+    }
+    
+    .data-table {
+        font-size: 0.75rem;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: var(--space-1) var(--space-2);
+    }
+    
+    .timeline-container {
+        max-width: 200px;
+    }
+    
+    .timeline li {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .data-table {
+        font-size: 0.6875rem;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: var(--space-1);
+    }
+    
+    .timeline-container {
+        max-width: 150px;
+    }
+    
+    .timeline li {
+        font-size: 0.6875rem;
+    }
+    
+    .paket-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-2);
+    }
+}

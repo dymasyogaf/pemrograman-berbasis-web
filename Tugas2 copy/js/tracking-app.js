@@ -1,17 +1,11 @@
 new Vue({
     el: '#tracking-app',
     data: {
-        // Data referensi (adaptasi dari dataBahanAjar.js) :contentReference[oaicite:1]{index=1}
-        pengirimanList: [
-            { kode: "REG", nama: "JNE Reguler (3-5 hari)" },
-            { kode: "EXP", nama: "JNE Ekspres (1-2 hari)" }
-        ],
-        paket: [
-            { kode: "PAKET-UT-001", nama: "PAKET IPS Dasar", isi: ["EKMA4116", "EKMA4115"], harga: 120000 },
-            { kode: "PAKET-UT-002", nama: "PAKET IPA Dasar", isi: ["BIOL4201", "FISIP4001"], harga: 140000 }
-        ],
+        // Data dari dataBahanAjar.js
+        pengirimanList: dataBahanAjar.pengirimanList,
+        paket: dataBahanAjar.paket,
 
-        // Data DO awal (diambil dari contoh tracking dummy) :contentReference[oaicite:2]{index=2}
+        // Data DO awal (diambil dari contoh tracking dummy)
         doList: [
             {
                 nomor: "DO2025-0001",

@@ -1,3 +1,10 @@
+<!--
+  Berkas: tracking.html
+  Keterangan: Halaman tracking delivery order (DO) untuk aplikasi SITTA UT
+  Fungsi: Menambah dan memantau status pengiriman bahan ajar ke mahasiswa
+  Fitur: Form tambah DO baru, daftar DO dengan status dan timeline perjalanan
+  Digunakan untuk: Melacak pengiriman bahan ajar dari gudang ke mahasiswa
+-->
 <!DOCTYPE html>
 <html lang="id">
 
@@ -5,53 +12,78 @@
     <meta charset="UTF-8">
     <title>Tracking Delivery Order - SITTA UT</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/tracking.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body class="layout">
     <header class="topbar">
-        <h1>Tracking Delivery Order (DO)</h1>
-        <p class="subtitle">Pantau status pengiriman bahan ajar mahasiswa</p>
-        <nav>
-            <a href="index.html" class="btn small">⬅ Kembali ke Beranda</a>
-            <a href="stok.html" class="btn small secondary">📚 Stok Bahan Ajar</a>
+        <div class="header-content">
+            <h1>Tracking Delivery Order (DO)</h1>
+            <p class="subtitle">Pantau status pengiriman bahan ajar mahasiswa</p>
+        </div>
+        <nav class="main-nav" id="main-nav">
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">🏠 Beranda</a>
+                <a href="stok.html" class="nav-link">📚 Stok Bahan Ajar</a>
+                <a href="tracking.html" class="nav-link active">📦 Tracking DO</a>
+            </div>
         </nav>
     </header>
 
     <main id="tracking-app" class="container">
         <!-- Info DO -->
         <section class="card highlight">
-            <h2>Informasi DO Terbaru</h2>
-            <p>
-                Nomor DO berikutnya: <strong v-text="nextDoNumber"></strong>
-            </p>
-            <p v-if="selectedPaket">
-                Paket terpilih: <strong v-text="selectedPaket.nama"></strong> &mdash;
-                Total Harga: <strong>Rp {{ formatRupiah(selectedPaket.harga) }}</strong>
-            </p>
-            <p v-else>
-                Pilih paket untuk melihat total harga.
-            </p>
+            <h2>📦 Informasi DO Terbaru</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Nomor DO berikutnya:</div>
+                    <div class="info-value" v-text="nextDoNumber"></div>
+                </div>
+                <div class="info-item" v-if="selectedPaket">
+                    <div class="info-label">Paket terpilih:</div>
+                    <div class="info-value">
+                        <strong v-text="selectedPaket.nama"></strong>
+                    </div>
+                </div>
+                <div class="info-item" v-if="selectedPaket">
+                    <div class="info-label">Total Harga:</div>
+                    <div class="info-value price">
+                        <strong>Rp {{ formatRupiah(selectedPaket.harga) }}</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="info-note" v-if="!selectedPaket">
+                💡 Pilih paket untuk melihat total harga.
+            </div>
         </section>
 
         <!-- Form Tambah DO -->
         <section class="card">
-            <h2>Tambah Data Delivery Order Baru</h2>
+            <h2>➕ Tambah Data Delivery Order Baru</h2>
             <form @submit.prevent="addDo" class="form-grid">
                 <div class="form-group">
                     <label>Nomor DO (otomatis)</label>
-                    <input type="text" :value="nextDoNumber" disabled>
+                    <input type="text" :value="nextDoNumber" disabled class="disabled-input">
                 </div>
 
                 <div class="form-group">
                     <label>NIM</label>
-                    <input v-model="form.nim" type="text">
+                    <input v-model="form.nim" type="text" placeholder="Contoh: 123456789">
                     <small class="error" v-if="errors.nim" v-text="errors.nim"></small>
                 </div>
 
                 <div class="form-group">
                     <label>Nama</label>
-                    <input v-model="form.nama" type="text">
+                    <input v-model="form.nama" type="text" placeholder="Contoh: Rina Wulandari">
                     <small class="error" v-if="errors.nama" v-text="errors.nama"></small>
                 </div>
 
@@ -77,23 +109,23 @@
                     <small class="error" v-if="errors.paketKode" v-text="errors.paketKode"></small>
                 </div>
 
-                <div class="form-group full" v-if="selectedPaket">
-                    <label>Isi Paket</label>
-                    <ul class="pill-list">
-                        <li v-for="kodeMk in selectedPaket.isi" :key="kodeMk" v-text="kodeMk"></li>
-                    </ul>
-                </div>
-
                 <div class="form-group">
                     <label>Tanggal Kirim</label>
                     <input v-model="form.tanggalKirim" type="date">
                     <small class="error" v-if="errors.tanggalKirim" v-text="errors.tanggalKirim"></small>
                 </div>
 
-                <div class="form-group">
-                    <label>Total Harga (otomatis)</label>
-                    <input type="text" :value="selectedPaket ? 'Rp ' + formatRupiah(selectedPaket.harga) : '-'"
-                        disabled>
+                <div class="form-group full" v-if="selectedPaket">
+                    <label>📋 Isi Paket</label>
+                    <div class="paket-contents">
+                        <div class="paket-header">
+                            <span class="paket-name" v-text="selectedPaket.nama"></span>
+                            <span class="paket-price">Rp {{ formatRupiah(selectedPaket.harga) }}</span>
+                        </div>
+                        <ul class="pill-list">
+                            <li v-for="kodeMk in selectedPaket.isi" :key="kodeMk" v-text="kodeMk"></li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="form-group full">
@@ -102,14 +134,14 @@
                 </div>
 
                 <div class="form-actions full">
-                    <button type="submit" class="btn primary">Simpan DO</button>
+                    <button type="submit" class="btn primary">💾 Simpan DO</button>
                 </div>
             </form>
         </section>
 
         <!-- Daftar DO -->
         <section class="card">
-            <h2>Daftar Delivery Order</h2>
+            <h2>📋 Daftar Delivery Order</h2>
             <div class="table-wrapper">
                 <table class="data-table">
                     <thead>
@@ -131,25 +163,29 @@
                             <td v-text="doItem.nim"></td>
                             <td v-text="doItem.nama"></td>
                             <td>
-                                {{ getEkspedisiName(doItem.ekspedisi) }}
+                                <span class="expedisi-badge">
+                                    {{ getEkspedisiName(doItem.ekspedisi) }}
+                                </span>
                             </td>
                             <td v-text="doItem.paketNama"></td>
                             <td v-text="doItem.tanggalKirim"></td>
-                            <td>Rp {{ formatRupiah(doItem.total) }}</td>
+                            <td class="price-cell">Rp {{ formatRupiah(doItem.total) }}</td>
                             <td>
                                 <span class="badge badge-info" v-text="doItem.status"></span>
                             </td>
                             <td>
-                                <ul class="timeline">
-                                    <li v-for="(step, idx) in doItem.perjalanan" :key="idx">
-                                        <strong v-text="step.waktu"></strong> &mdash;
-                                        <span v-text="step.keterangan"></span>
-                                    </li>
-                                </ul>
+                                <div class="timeline-container">
+                                    <ul class="timeline">
+                                        <li v-for="(step, idx) in doItem.perjalanan" :key="idx">
+                                            <strong v-text="step.waktu"></strong> &mdash;
+                                            <span v-text="step.keterangan"></span>
+                                        </li>
+                                    </ul>
+                                </div>
                             </td>
                         </tr>
                         <tr v-if="doList.length === 0">
-                            <td colspan="9" class="text-center">Belum ada data DO.</td>
+                            <td colspan="9" class="text-center">📭 Belum ada data DO.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -158,7 +194,10 @@
     </main>
 
     <footer class="footer">
-        <small>SITTA UT - Halaman Tracking DO</small>
+        <div class="footer-content">
+            <p>&copy; 2025 SITTA UT - Halaman Tracking DO</p>
+            <p class="footer-note">Universitas Terbuka</p>
+        </div>
     </footer>
 
     <!-- Vue.js CDN -->
@@ -167,6 +206,39 @@
     <script src="js/dataBahanAjar.js"></script>
     <!-- App logic -->
     <script src="js/tracking-app.js"></script>
+    
+    <script>
+        // Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+                
+                // Close menu when clicking on a link
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                    });
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!navToggle.contains(event.target) && !navMenu.contains(event.target)) {
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
+
 </body>
 
 </html>
