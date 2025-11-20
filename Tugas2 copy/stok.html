@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stok Bahan Ajar - SITTA UT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="layout">
+    <header class="topbar">
+        <h1>Stok Bahan Ajar</h1>
+        <p class="subtitle">Manajemen stok bahan ajar untuk seluruh UT Daerah</p>
+        <nav>
+            <a href="index.html" class="btn small">⬅ Kembali ke Beranda</a>
+            <a href="tracking.html" class="btn small secondary">📦 Tracking DO</a>
+        </nav>
+    </header>
+
+    <main id="stok-app" class="container">
+        <!-- Ringkasan -->
+        <section class="card highlight">
+            <h2>Ringkasan Stok</h2>
+            <div class="stats-row">
+                <div class="stat-box">
+                    <span class="stat-label">Total Item</span>
+                    <span class="stat-number" v-text="totalItems"></span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Stok Aman</span>
+                    <span class="stat-number text-success" v-text="totalAman"></span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Stok Menipis</span>
+                    <span class="stat-number text-warning" v-text="totalMenipis"></span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Stok Kosong</span>
+                    <span class="stat-number text-danger" v-text="totalKosong"></span>
+                </div>
+            </div>
+            <p class="info-note" v-if="lowStockReminder">
+                🔔 <strong v-text="lowStockReminder"></strong>
+            </p>
+        </section>
+
+        <!-- Filter & Sort -->
+        <section class="card">
+            <h2>Filter & Pengurutan</h2>
+            <div class="filters">
+                <div class="filter-group">
+                    <label>UT-Daerah</label>
+                    <select v-model="selectedUpbjj">
+                        <option value="">Semua UT-Daerah</option>
+                        <option v-for="u in upbjjList" :key="u" :value="u" v-text="u"></option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Kategori Mata Kuliah</label>
+                    <select v-model="selectedKategori" :disabled="!selectedUpbjj">
+                        <option value="">Semua Kategori</option>
+                        <option v-for="k in kategoriList" :key="k" :value="k" v-text="k"></option>
+                    </select>
+                    <small v-if="!selectedUpbjj" class="hint">
+                        Pilih UT-Daerah terlebih dahulu untuk mengatur kategori
+                    </small>
+                </div>
+
+                <div class="filter-group checkbox-group">
+                    <label><input type="checkbox" v-model="showLowStockOnly"> Hanya stok &lt; safety</label>
+                    <label><input type="checkbox" v-model="showEmptyOnly"> Hanya stok kosong</label>
+                </div>
+
+                <div class="filter-group">
+                    <label>Sortir berdasarkan</label>
+                    <select v-model="sortKey">
+                        <option value="judul">Judul</option>
+                        <option value="qty">Stok</option>
+                        <option value="harga">Harga</option>
+                    </select>
+                    <select v-model="sortDir">
+                        <option value="asc">Naik (A-Z / Kecil-Besar)</option>
+                        <option value="desc">Turun (Z-A / Besar-Kecil)</option>
+                    </select>
+                </div>
+
+                <div class="filter-actions">
+                    <button class="btn secondary" @click="resetFilters">Reset Filter</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tabel Stok -->
+        <section class="card">
+            <h2>Daftar Stok Bahan Ajar</h2>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Kode MK</th>
+                            <th>Judul</th>
+                            <th>Kategori</th>
+                            <th>UT-Daerah</th>
+                            <th>Lokasi Rak</th>
+                            <th>Harga</th>
+                            <th>Stok</th>
+                            <th>Safety</th>
+                            <th>Status</th>
+                            <th>Catatan</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item, index) in sortedStocks" :key="item.kode">
+                            <td v-text="item.kode"></td>
+                            <td v-text="item.judul"></td>
+                            <td v-text="item.kategori"></td>
+                            <td v-text="item.upbjj"></td>
+                            <td>
+                                <span v-if="!item._editing" v-text="item.lokasiRak"></span>
+                                <input v-else v-model="item.lokasiRak" />
+                            </td>
+                            <td>Rp {{ formatRupiah(item.harga) }}</td>
+                            <td>
+                                <span v-if="!item._editing" v-text="item.qty"></span>
+                                <input v-else type="number" min="0" v-model.number="item.qty" />
+                            </td>
+                            <td v-text="item.safety"></td>
+                            <td>
+                                <span :class="['badge', getStatusClass(item)]" v-text="getStatusLabel(item)"></span>
+                            </td>
+                            <td>
+                                <!-- catatanHTML wajib pakai v-html -->
+                                <span v-html="item.catatanHTML"></span>
+                            </td>
+                            <td>
+                                <button v-if="!item._editing" class="btn small" @click="editRow(item)">Edit</button>
+                                <div v-else class="inline-actions">
+                                    <button class="btn small primary" @click="saveRow(item)">Simpan</button>
+                                    <button class="btn small secondary" @click="cancelEdit(item, index)">Batal</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr v-if="sortedStocks.length === 0">
+                            <td colspan="11" class="text-center">Tidak ada data yang sesuai filter.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Form Tambah Stok -->
+        <section class="card">
+            <h2>Tambah Data Bahan Ajar Baru</h2>
+            <form @submit.prevent="addStock" class="form-grid">
+                <div class="form-group">
+                    <label>Kode MK</label>
+                    <input v-model="form.kode" type="text" />
+                    <small class="error" v-if="errors.kode" v-text="errors.kode"></small>
+                </div>
+
+                <div class="form-group">
+                    <label>Judul Mata Kuliah</label>
+                    <input v-model="form.judul" type="text" />
+                    <small class="error" v-if="errors.judul" v-text="errors.judul"></small>
+                </div>
+
+                <div class="form-group">
+                    <label>Kategori</label>
+                    <select v-model="form.kategori">
+                        <option value="">Pilih Kategori</option>
+                        <option v-for="k in kategoriList" :key="k" :value="k" v-text="k"></option>
+                    </select>
+                    <small class="error" v-if="errors.kategori" v-text="errors.kategori"></small>
+                </div>
+
+                <div class="form-group">
+                    <label>UT-Daerah</label>
+                    <select v-model="form.upbjj">
+                        <option value="">Pilih UT-Daerah</option>
+                        <option v-for="u in upbjjList" :key="u" :value="u" v-text="u"></option>
+                    </select>
+                    <small class="error" v-if="errors.upbjj" v-text="errors.upbjj"></small>
+                </div>
+
+                <div class="form-group">
+                    <label>Lokasi Rak</label>
+                    <input v-model="form.lokasiRak" type="text" placeholder="Misal: R1-A3" />
+                </div>
+
+                <div class="form-group">
+                    <label>Harga (Rp)</label>
+                    <input v-model.number="form.harga" type="number" min="0" />
+                    <small class="error" v-if="errors.harga" v-text="errors.harga"></small>
+                </div>
+
+                <div class="form-group">
+                    <label>Qty Stok</label>
+                    <input v-model.number="form.qty" type="number" min="0" />
+                    <small class="error" v-if="errors.qty" v-text="errors.qty"></small>
+                </div>
+
+                <div class="form-group">
+                    <label>Safety Stok</label>
+                    <input v-model.number="form.safety" type="number" min="0" />
+                    <small class="error" v-if="errors.safety" v-text="errors.safety"></small>
+                </div>
+
+                <div class="form-group full">
+                    <label>Catatan (HTML ringan opsional)</label>
+                    <input v-model="form.catatanHTML" type="text"
+                        placeholder="Misal: &lt;em&gt;Edisi terbaru&lt;/em&gt;" />
+                </div>
+
+                <div class="form-actions full">
+                    <button type="submit" class="btn primary">Tambah Bahan Ajar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <small>SITTA UT - Halaman Stok Bahan Ajar</small>
+    </footer>
+
+    <!-- Vue.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- App logic -->
+    <script src="js/stok-app.js"></script>
+</body>
+
+</html>
