@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Ikon kotak outline">
-  <rect width="512" height="512" fill="#0a3d91" />
-  <g fill="none" stroke="#ffffff" stroke-width="18" stroke-linejoin="round" stroke-linecap="round">
-    <path d="M144 176 256 128l112 48-112 48z" />
-    <path d="M144 176v160l112 48V272zM368 176v160l-112 48V272z" />
-    <path d="M144 256l112 48 112-48" />
-  </g>
-</svg>
