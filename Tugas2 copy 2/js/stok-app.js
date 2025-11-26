@@ -1,4 +1,12 @@
- // Store app instance globally for session management
+/*
+  Berkas: stok-app.js
+  Keterangan: Berkas JavaScript berisi logika aplikasi Vue.js untuk halaman manajemen stok
+  Fungsi: Mengimplementasikan fitur pengelolaan stok (Create, Read, Update)
+  Fitur: Filter berdasarkan UT-Daerah dan kategori, sorting, edit inline, validasi form, dan statistik stok
+  Digunakan untuk: Mengelola inventaris bahan ajar Universitas Terbuka secara interaktif
+*/
+
+// Store app instance globally for session management
 document.addEventListener("DOMContentLoaded", function () {
   window.stokApp = new Vue({
     el: "#stok-app",

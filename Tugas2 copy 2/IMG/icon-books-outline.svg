@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Ikon buku outline">
+  <rect width="512" height="512" fill="#0a3d91" />
+  <g fill="none" stroke="#ffffff" stroke-width="18" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="120" y="128" width="224" height="72" rx="14" ry="14" />
+    <rect x="120" y="212" width="224" height="72" rx="14" ry="14" />
+    <rect x="120" y="296" width="224" height="72" rx="14" ry="14" />
+    <path d="M344 142h32M344 226h32M344 310h32" />
+  </g>
+</svg>

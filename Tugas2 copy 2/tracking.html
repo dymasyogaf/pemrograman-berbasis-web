@@ -236,6 +236,12 @@
                     <div class="do-nim">
                       NIM: <span v-text="doItem.nim"></span>
                     </div>
+                    <div class="do-address" v-if="doItem.alamat">
+                    &#x1F4CD; <span v-text="doItem.alamat"></span>
+                    </div>
+                    <div class="do-phone" v-if="doItem.telepon">
+                    &#x1F4DE; <span v-text="doItem.telepon"></span>
+                    </div>
                   </div>
                 </td>
                 <td>
@@ -356,6 +362,20 @@
               <div class="info-item">
                 <label>NIM</label>
                 <div class="info-value" v-text="selectedTrackingItem.nim"></div>
+              </div>
+              <div class="info-item" v-if="selectedTrackingItem.alamat">
+                <label>Alamat Pengiriman</label>
+                <div
+                  class="info-value"
+                  v-text="selectedTrackingItem.alamat"
+                ></div>
+              </div>
+              <div class="info-item" v-if="selectedTrackingItem.telepon">
+                <label>Telepon</label>
+                <div
+                  class="info-value"
+                  v-text="selectedTrackingItem.telepon"
+                ></div>
               </div>
               <div class="info-item">
                 <label>Ekspedisi</label>

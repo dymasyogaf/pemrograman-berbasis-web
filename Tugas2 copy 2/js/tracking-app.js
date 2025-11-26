@@ -1,3 +1,11 @@
+/*
+  Berkas: tracking-app.js
+  Keterangan: Berkas JavaScript berisi logika aplikasi Vue.js untuk halaman tracking delivery order
+  Fungsi: Mengimplementasikan fitur tracking pengiriman bahan ajar ke mahasiswa
+  Fitur: Form tambah DO baru, generate nomor DO otomatis, timeline perjalanan, dan validasi form
+  Digunakan untuk: Melacak status pengiriman bahan ajar dari gudang ke mahasiswa
+*/
+
 // Store app instance globally for session management
 document.addEventListener("DOMContentLoaded", function () {
   window.trackingApp = new Vue({

@@ -604,16 +604,6 @@
   font-weight: 700;
 }
 
-.tracking-modal .modal-header {
-  background: #0a3d91;
-  color: #ffffff;
-  border-bottom: none;
-}
-
-.tracking-modal .modal-header h3 {
-  color: #ffffff;
-}
-
 .modal-header .close {
   background: transparent;
   border: none;
@@ -639,8 +629,7 @@
 .tracking-summary {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--space-4);
-  margin-top: var(--space-4);
+  gap: var(--space-3);
 }
 
 .summary-card {
