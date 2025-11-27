@@ -1,0 +1,82 @@
+/* Stok page styles */
+.stock-table-wrapper {
+  overflow-x: auto;
+  border-radius: 16px;
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
+}
+
+.stock-table {
+  --stok-col-1: 120px;
+  --stok-col-2: 220px;
+  --stok-col-3: 180px;
+  --stok-col-4: 140px;
+  --stok-col-5: 120px;
+  --stok-col-6: 100px;
+  --stok-col-7: 100px;
+  --stok-col-8: 110px;
+  --stok-col-9: 160px;
+  --stok-col-10: 200px;
+  --stok-col-11: 130px;
+}
+
+.stock-table thead tr,
+.stock-table tbody tr {
+  display: grid;
+  grid-template-columns:
+    var(--stok-col-1) var(--stok-col-2) var(--stok-col-3) var(--stok-col-4)
+    var(--stok-col-5) var(--stok-col-6) var(--stok-col-7) var(--stok-col-8)
+    var(--stok-col-9) var(--stok-col-10) var(--stok-col-11);
+  align-items: start;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.inline-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--gray-200);
+  background: #f8fbff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.icon-btn.edit {
+  background: #fff7e0;
+  border-color: #f2c94c;
+  color: #9a6b00;
+}
+
+.icon-btn.delete {
+  background: #ffe1e5;
+  border-color: #f28aa0;
+  color: var(--danger);
+}
+
+.icon-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.edit-input {
+  padding: 6px 8px;
+  border: 1px solid var(--gray-300);
+  border-radius: 8px;
+  width: 100%;
+}

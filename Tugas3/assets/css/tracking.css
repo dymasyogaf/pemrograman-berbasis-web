@@ -1,0 +1,152 @@
+/* Tracking page styles */
+.do-table-wrapper {
+  border: 1px solid var(--gray-200);
+  border-radius: 16px;
+  overflow-x: auto;
+  box-shadow: var(--shadow-sm);
+}
+
+.do-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.do-table thead {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: #fff;
+}
+
+.do-table th {
+  padding: 12px;
+  text-align: left;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.do-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.do-customer-info,
+.do-package-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.do-name {
+  font-weight: 700;
+  color: var(--gray-800);
+}
+
+.do-nim,
+.do-package-code {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+}
+
+.do-package-name {
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+.expedisi-badge {
+  padding: 6px 10px;
+  background: var(--primary-light);
+  color: var(--primary-color);
+  border-radius: 10px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.do-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+
+.do-status.processing {
+  background: #fff7e0;
+  color: #a86b00;
+  border-color: #f2c94c;
+}
+
+.do-status.delivered {
+  background: #e6f7ec;
+  color: #1f7a45;
+  border-color: #34c759;
+}
+
+.do-status.pending {
+  background: #f3f4f6;
+  color: #374151;
+  border-color: #d1d5db;
+}
+
+.search-bar {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-left: 3px solid var(--primary-color);
+}
+
+.timeline li {
+  padding: 14px 0 14px 16px;
+  position: relative;
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 16px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  border: 3px solid #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.timeline-time {
+  font-family: "Inter", sans-serif;
+  font-size: 0.82rem;
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.timeline-body {
+  color: var(--gray-700);
+}
+
+.pill-list {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 0;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pill-list li {
+  background: #e8eef5;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+}
