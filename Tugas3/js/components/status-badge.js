@@ -1,4 +1,5 @@
 // js/components/status-badge.js
+// 8. Lencana status stok: Aman/Menipis/Kosong berdasar qty vs safety
 Vue.component('status-badge', {
     template: '#tpl-status-badge',
     props: {

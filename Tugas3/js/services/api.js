@@ -1,5 +1,6 @@
 // js/services/api.js
 const ApiService = {
+    // 5. Fetch data JSON (data/dataBahanAjar.json), rapikan jadi stocks, paketList, ekspedisiList, doList
     async loadAllData() {
         const response = await fetch('data/dataBahanAjar.json');
         if (!response.ok) {

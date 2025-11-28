@@ -38,6 +38,7 @@ Vue.filter('dateTime', function (value) {
 });
 
 // ===== ROOT APP =====
+// 2. Nyalakan Vue di #app, daftarkan filter global untuk format rupiah/tanggal
 new Vue({
     el: '#app',
     data: {
@@ -54,6 +55,7 @@ new Vue({
     },
     methods: {
         loadInitialData() {
+            // 3. Ambil semua data awal (stok, paket, ekspedisi, DO) lewat ApiService
             this.isLoading = true;
             ApiService.loadAllData()
                 .then((data) => {
@@ -73,6 +75,7 @@ new Vue({
         }
     },
     created() {
+        // 4. Saat app dibuat, langsung muat data supaya tampilan siap dipakai
         this.loadInitialData();
     }
 });

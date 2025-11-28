@@ -1,4 +1,5 @@
 // js/components/order-form.js
+// 10. Form DO baru; kirim data ke parent lewat event 'submit-do'
 Vue.component('order-form', {
     template: '#tpl-order-form',
     props: {

@@ -1,4 +1,5 @@
 // js/components/stock-table.js
+// 7. Tabel stok: terima data awal, sediakan filter/sort, edit inline, tambah/hapus stok lokal
 Vue.component('ba-stock-table', {
     template: '#tpl-stock-table',
     props: {

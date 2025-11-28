@@ -16,21 +16,22 @@
 
 <body class="layout">
     <div id="app" class="app-shell" v-cloak>
+        <!-- 1. Ini rumah utama aplikasi Vue; semua komponen dirender ke #app -->
         <aside class="side-nav">
             <div class="logo-wrap">
                 <a href="#" class="brand-logo" aria-label="Beranda">
-                    <img src="../Tugas2/IMG/logo-ut-putih.png" alt="Logo Universitas Terbuka" />
+                    <img src="./assets/img/logo-ut-putih.png" alt="Logo Universitas Terbuka" />
                 </a>
             </div>
             <nav class="side-links">
                 <a href="#" class="nav-link" :class="{ active: currentTab === 'stok' }" data-label="STOK"
                     @click.prevent="currentTab = 'stok'">
-                    <img src="../Tugas2/IMG/icon-books-outline.svg" alt="" class="nav-icon" />
+                    <img src="./assets/img/icon-books-outline.svg" alt="" class="nav-icon" />
                     <span class="sr-only">Stok</span>
                 </a>
                 <a href="#" class="nav-link" :class="{ active: currentTab === 'tracking' }" data-label="TRACKING"
                     @click.prevent="currentTab = 'tracking'">
-                    <img src="../Tugas2/IMG/icon-box-outline.svg" alt="" class="nav-icon" />
+                    <img src="./assets/img/icon-box-outline.svg" alt="" class="nav-icon" />
                     <span class="sr-only">Tracking</span>
                 </a>
             </nav>
@@ -56,6 +57,7 @@
         </div>
     </div>
 
+    <!-- 6. Template komponen (stock table, modal, status badge, order form, tracking DO) disiapkan di sini -->
     <!-- STOCK TABLE TEMPLATE -->
     <script type="text/x-template" id="tpl-stock-table">
       <section class="stack">
@@ -574,7 +576,7 @@
       </section>
     </script>
 
-    <!-- JS ORDER (services -> components -> app) -->
+    <!-- 12. Urutan load: services -> components -> app; ApiService harus siap sebelum app.js -->
     <script src="js/services/api.js"></script>
     <script src="js/components/app-modal.js"></script>
     <script src="js/components/status-badge.js"></script>
@@ -585,7 +587,5 @@
 </body>
 
 </html>
-
-
 
 
