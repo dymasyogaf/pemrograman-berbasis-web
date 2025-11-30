@@ -1,11 +1,4 @@
-/*
-  Berkas: tracking.css
-  Keterangan: Berkas CSS berisi gaya khusus untuk halaman tracking delivery order aplikasi SITTA UT
-  Fungsi: Mendefinisikan tampilan khusus untuk komponen di halaman tracking pengiriman
-  Isi: Gaya untuk info grid, disabled input, paket contents, expedisi badge, price cell, dan timeline
-  Digunakan untuk: Meningkatkan tampilan halaman tracking agar lebih informatif dan responsif
-*/
-
+/* Gaya halaman tracking Delivery Order SITTA UT */
 /* ===================================
    TRACKING PAGE SPECIFIC STYLES
    =================================== */

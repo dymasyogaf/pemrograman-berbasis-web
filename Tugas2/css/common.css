@@ -1,11 +1,4 @@
-/*
-  Berkas: common.css
-  Keterangan: Berkas CSS berisi gaya umum yang digunakan di semua halaman aplikasi SITTA UT
-  Fungsi: Mendefinisikan variabel CSS, komponen dasar, dan gaya yang digunakan bersama
-  Isi: Variabel warna, tipografi, spacing, komponen header, navigasi, card, button, form, tabel, dll.
-  Digunakan untuk: Menjamin konsistensi tampilan di seluruh halaman aplikasi
-*/
-
+/* Gaya dasar dan komponen bersama untuk SITTA UT */
 /* ===================================
    COMMON STYLES FOR ALL PAGES
    =================================== */

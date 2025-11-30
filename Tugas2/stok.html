@@ -1,8 +1,4 @@
-<!--
-  Fungsi: Menampilkan, mengelola, dan memantau stok bahan ajar di seluruh UT Daerah
-  Fitur: Filter berdasarkan UT-Daerah dan kategori, sorting, edit inline, dan tambah stok baru
-  Digunakan untuk: Mengelola inventaris bahan ajar Universitas Terbuka
--->
+<!-- Halaman manajemen stok bahan ajar SITTA UT -->
 <!doctype html>
 <html lang="id">
   <head>
@@ -103,6 +99,7 @@
         <div class="filters">
           <div class="filter-group">
             <label>UT-Daerah</label>
+            <!-- Dropdown filter UT-Daerah -->
             <select v-model="selectedUpbjj">
               <option value="">Semua UT-Daerah</option>
               <option
@@ -116,6 +113,7 @@
 
           <div class="filter-group">
             <label>Kategori Mata Kuliah</label>
+            <!-- Dropdown filter kategori mata kuliah -->
             <select v-model="selectedKategori" :disabled="!selectedUpbjj">
               <option value="">Semua Kategori</option>
               <option
@@ -131,10 +129,12 @@
           </div>
 
           <div class="filter-group checkbox-group">
+            <!-- Checkbox untuk filter stok kritis -->
             <label
               ><input type="checkbox" v-model="showLowStockOnly" /> Hanya stok
               &lt; safety</label
             >
+            <!-- Checkbox untuk filter stok kosong -->
             <label
               ><input type="checkbox" v-model="showEmptyOnly" /> Hanya stok
               kosong</label
@@ -143,11 +143,13 @@
 
           <div class="filter-group">
             <label>Sortir berdasarkan</label>
+            <!-- Dropdown urutan kolom -->
             <select v-model="sortKey">
               <option value="judul">Judul</option>
               <option value="qty">Stok</option>
               <option value="harga">Harga</option>
             </select>
+            <!-- Dropdown arah sort -->
             <select v-model="sortDir">
               <option value="asc">Naik (A-Z / Kecil-Besar)</option>
               <option value="desc">Turun (Z-A / Besar-Kecil)</option>

@@ -1,4 +1,5 @@
- // Store app instance globally for session management
+// Vue app untuk pengelolaan stok bahan ajar SITTA UT
+// Store app instance globally for session management
 document.addEventListener("DOMContentLoaded", function () {
   window.stokApp = new Vue({
     el: "#stok-app",

@@ -1,11 +1,4 @@
-/*
-  Berkas: style.css
-  Keterangan: Berkas CSS utama yang berisi gaya dasar dan komponen untuk aplikasi SITTA UT
-  Fungsi: Mendefinisikan variabel CSS, reset styles, dan komponen UI yang digunakan di seluruh aplikasi
-  Isi: Variabel warna, tipografi, spacing, komponen header, card, button, form, tabel, dll.
-  Digunakan untuk: Memberikan tampilan modern dan konsisten di seluruh aplikasi
-*/
-
+/* Reset dasar dan variabel utama proyek SITTA UT */
 /* Modern CSS Reset & Base Styles */
 *,
 *::before,

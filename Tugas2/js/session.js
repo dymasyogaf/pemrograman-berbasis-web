@@ -1,11 +1,4 @@
-/*
-  Berkas: session.js
-  Keterangan: Berkas JavaScript berisi fungsi manajemen sesi pengguna untuk aplikasi SITTA UT
-  Fungsi: Mengelola sesi login, menampilkan info user, dan logout
-  Fitur: Session management, user info display, logout confirmation, dan redirect
-  Digunakan untuk: Mengelola autentikasi pengguna di seluruh aplikasi
-*/
-
+// Utilitas manajemen sesi pengguna SITTA UT
 // Session Management Functions
 const SessionManager = {
   // Get current logged in user

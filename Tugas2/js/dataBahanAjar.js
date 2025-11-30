@@ -1,11 +1,4 @@
-/*
-  Berkas: dataBahanAjar.js
-  Keterangan: Berkas JavaScript berisi data master untuk aplikasi SITTA UT
-  Fungsi: Menyimpan data referensi yang digunakan oleh seluruh aplikasi
-  Isi: Daftar UPBJJ, kategori mata kuliah, jenis pengiriman, paket bahan ajar, data stok, tracking, dan data pengguna
-  Digunakan untuk: Menyediakan data sumber untuk aplikasi manajemen stok dan tracking
-*/
-
+// Dataset dummy SITTA UT untuk stok, pengiriman, dan pengguna
 // Data Bahan Ajar untuk SITTA UT
 const dataBahanAjar = {
   // Data pengguna untuk autentikasi

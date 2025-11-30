@@ -1,10 +1,4 @@
-<!--
-  Berkas: tracking.html
-  Keterangan: Halaman tracking delivery order (DO) untuk aplikasi SITTA UT
-  Fungsi: Menambah dan memantau status pengiriman bahan ajar ke mahasiswa
-  Fitur: Form tambah DO baru, daftar DO dengan status dan timeline perjalanan
-  Digunakan untuk: Melacak pengiriman bahan ajar dari gudang ke mahasiswa
--->
+<!-- Halaman pelacakan Delivery Order SITTA UT -->
 <!doctype html>
 <html lang="id">
   <head>
@@ -136,6 +130,7 @@
 
           <div class="form-group">
             <label>Ekspedisi</label>
+            <!-- Dropdown pilihan ekspedisi pengiriman -->
             <select v-model="form.ekspedisi">
               <option value="">Pilih Ekspedisi</option>
               <option v-for="e in pengirimanList" :key="e.kode" :value="e.kode">
@@ -151,6 +146,7 @@
 
           <div class="form-group">
             <label>Paket Bahan Ajar</label>
+            <!-- Dropdown pilihan paket kiriman -->
             <select v-model="form.paketKode">
               <option value="">Pilih Paket</option>
               <option v-for="p in paket" :key="p.kode" :value="p.kode">

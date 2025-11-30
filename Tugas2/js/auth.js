@@ -1,11 +1,4 @@
-/*
-  Berkas: auth.js
-  Keterangan: Berkas JavaScript berisi logika autentikasi untuk aplikasi SITTA UT
-  Fungsi: Proses login, validasi form, dan notifikasi error
-  Fitur: Form validation, toast notification, modal handling, dan session management
-  Digunakan untuk: Mengamankan akses ke sistem manajemen stok dan tracking
-*/
-
+// Logika autentikasi login SITTA UT
 // Data pengguna diambil dari dataBahanAjar.js
 const dataPengguna = dataBahanAjar.dataPengguna;
 
